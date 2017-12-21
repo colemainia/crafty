@@ -1,7 +1,14 @@
 import board_square
+ORDER = 8
 class chessboard:
-    def __init__(self, order=8):
-        if order > 8: 
-            raise ValueError('You can\'t make a chessboard bigger than 8x8.')
-        self.order = order
-        print('Chessboard of order ' + str(order) + ' initialized.')
+    """
+    This class encapsulates all the attributes of a board
+    in the game of 'Chess'.
+    """
+    def __init__(self):
+        self.squares = [[] for i in range(ORDER)]
+        for board_file, row in enumerate(self.squares):
+            for board_rank in range(ORDER):
+                row.append(board_square.board_square(board_rank, board_file))
+
+        print('Chessboard of order ' + str(ORDER) + ' initialized.')
