@@ -3,7 +3,6 @@ import board_square
 import chessboard
 
 testboard = chessboard.chessboard().squares
-square_11 = testboard[1][1]
 
 class TestBoardSquares(unittest.TestCase):
     """
