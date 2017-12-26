@@ -1,6 +1,6 @@
 import board_square
 ORDER = 8
-class chessboard:
+class Chessboard:
     """
     This class encapsulates all the attributes of a board
     in the game of 'Chess'.
@@ -9,6 +9,7 @@ class chessboard:
         self.squares = [[] for i in range(ORDER)]
         for board_file, row in enumerate(self.squares):
             for board_rank in range(ORDER):
-                row.append(board_square.board_square(board_rank, board_file))
+                row.append(board_square.BoardSquare(board_rank, board_file))
 
         print('Chessboard of order ' + str(ORDER) + ' initialized.')
+

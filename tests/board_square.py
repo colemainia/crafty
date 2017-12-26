@@ -1,4 +1,4 @@
-class board_square():
+class BoardSquare():
     """
     This class encapsulates all attributes of a
     single square in the board game 'Chess'.
