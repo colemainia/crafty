@@ -1,5 +1,7 @@
 import board_square
 ORDER = 8
+
+
 class Chessboard:
     """
     This class encapsulates all the attributes of a board
@@ -12,4 +14,3 @@ class Chessboard:
                 row.append(board_square.BoardSquare(board_rank, board_file))
 
         print('Chessboard of order ' + str(ORDER) + ' initialized.')
-

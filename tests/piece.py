@@ -1,38 +1,77 @@
-import chessboard
+"""
+The piece file includes all classes, enumerables, and
+functionality that are needed to describe the particular
+attributes and funtionality of each piece type in the
+board game Chess.
+"""
 import board_square
-from abc import ABC
+import chessboard
+from abc import ABC, abstactmethod
 from enum import Enum
 
 
-"""
-DOCSTRING: A SUGGESTION FOR CO-PILOT
-
-I think a good idea for this, in addition to your plan, is to
-break up the move rules into types, such as orthogonal, diagonal,
-king's, pawn's, and knight's. That way, rules like orthogonal
-and diagonal are not defined twice for each piece that uses them.
-This also would make our project more readable.
-"""
 class Color(Enum):
-    """
-    This Enumerable encapsulates the two colors that a Piece may have.
-    That is, a chess piece is either Black or White.
-    """
-    BLACK = 1
-    WHITE = 2
+    """Enumerable with Color option Black or White."""
+    BLACK = 0
+    WHITE = 1
+
 
 class Piece(ABC):
-    """
-    This Abstract Base Class encapsulates all of the attributes of a single
-    piece in the game of 'Chess'.
-    """
+    """Abstract Base Class encapsulating piece color and move logic."""
     def __init__(self, color):
         self.color = color
+        super().__init__()
 
 
 class Rook(Piece):
-    """
-    This Piece encapsulates all of the attributes of a Black or White
-    Rook in the game of 'Chess'. It moves orthogonally.
-    """
-    pass
+    """The orthogonally moving Rook."""
+    def __init__(self):
+        self.relative_poss_coords = [
+            (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7),
+            (0, -1), (0, -2), (0, -3), (0, -4), (0, -5), (0, -6), (0, -7),
+            (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0),
+            (-1, 0), (-2, 0), (-3, 0), (-4, 0), (-5, 0), (-6, 0), (-7, 0)
+        ]
+        super().__init__()
+
+
+class Knight(Piece):
+    """The 'L' moving Knight."""
+    def __init__(self):
+        self.relative_poss_coords = [
+            (-2, 1), (-2, -1), (2, 1), (2, -1),
+            (1, -2), (1, 2), (-1, 2), (-1, -2)
+        ]
+        super().__init__()
+
+
+class Bishop(Piece):
+    """The Diagonally moving Bishop."""
+    def __init__(self):
+        self.relative_poss_coords = [
+            (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7),
+            (1, -1), (2, -2), (3, -3), (4, -4), (5, -5), (6, -6), (7, -7),
+            (-1, 1), (-2, 2), (-3, 3), (-4, 4), (-5, 5), (-6, 6), (-7, 7),
+            (-1, -1), (-2, -2), (-3, -3), (-4, -4),
+            (-5, -5), (-6, -6), (-7, -7)
+        ]
+        super().__init__()
+
+
+class Pawn(Piece):
+    """The Forward moving Pawn."""
+    def __init__(self):
+        self.relative_poss_coords = [
+            (0, 1), (0, 2), (1, 1), (-1, 1)
+        ]
+        super().__init__()
+
+
+class King(Piece):
+    """The Single square moving King."""
+    def __init__(self):
+        self.relative_poss_coords = [
+            (0, 1), (1, 1), (1, 0), (1, -1),
+            (0, -1), (-1, -1), (-1, 0), (-1, 1)
+        ]
+        super().__init__()
